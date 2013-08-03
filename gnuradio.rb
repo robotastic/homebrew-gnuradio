@@ -6,7 +6,6 @@ class Gnuradio < Formula
   sha1 '8d3846dc1d00c60b74f06c0bb8f40d57ee257b5a'
   head 'http://gnuradio.org/git/gnuradio.git'
 
-  depends_on 'apple-gcc42' => :build
   depends_on 'cmake' => :build
   depends_on 'Cheetah' => :python
   depends_on 'lxml' => :python
@@ -32,6 +31,8 @@ class Gnuradio < Formula
     cause "Fails to compile .S files."
   end
 
+  fails_with :llvm
+
   def options
     [
       ['--with-qt', 'Build gr-qtgui.'],
@@ -44,12 +45,6 @@ class Gnuradio < Formula
   end
 
   def install
-
-	  # Force compilation with gcc-4.2
-	  ENV['CC'] = '/usr/local/bin/gcc-4.2'
-	  ENV['LD'] = '/usr/local/bin/gcc-4.2'
-	  ENV['CXX'] = '/usr/local/bin/g++-4.2'
-
     mkdir 'build' do
       args = ["-DCMAKE_PREFIX_PATH=#{prefix}", "-DQWT_INCLUDE_DIRS=#{HOMEBREW_PREFIX}/lib/qwt.framework/Headers"] + std_cmake_args
       args << '-DENABLE_GR_QTGUI=OFF' unless ARGV.include?('--with-qt')
