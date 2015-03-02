@@ -5,6 +5,7 @@ class Gnuradio < Formula
   url  'http://gnuradio.org/releases/'
   sha1 '8d3846dc1d00c60b74f06c0bb8f40d57ee257b5a'
   head 'http://gnuradio.org/git/gnuradio.git', :tag => 'v3.7.3'
+  version '3.7.3'
 
   depends_on 'cmake' => :build
   depends_on 'Cheetah' => :python
