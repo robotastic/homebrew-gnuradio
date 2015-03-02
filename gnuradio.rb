@@ -3,7 +3,7 @@ require 'formula'
 class Gnuradio < Formula
   homepage 'http://gnuradio.org'
   url  'http://gnuradio.org/releases/'
-  sha1 '8d3846dc1d00c60b74f06c0bb8f40d57ee257b5a'
+  sha1 '48be46b4d62c08fe9eedf1ff1f6016514d427622'
   head 'http://gnuradio.org/git/gnuradio.git', :tag => 'v3.7.3'
   version '3.7.3'
 
