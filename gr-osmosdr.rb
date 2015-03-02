@@ -2,7 +2,7 @@ require 'formula'
 
 class GrOsmosdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/GrOsmoSDR'
-  head 'git://git.osmocom.org/gr-osmosdr', :branch => 'gr3.6',
+  head 'git://git.osmocom.org/gr-osmosdr', :tag => '0.1.4',
     :shallow => false
 
   depends_on 'cmake' => :build
