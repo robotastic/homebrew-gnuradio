@@ -2,9 +2,9 @@ require 'formula'
 
 class Gnuradio < Formula
   homepage 'http://gnuradio.org'
-  url  'http://gnuradio.org/releases/gnuradio/gnuradio-3.6.5.1.tar.gz'
+  url  'http://gnuradio.org/releases/'
   sha1 '8d3846dc1d00c60b74f06c0bb8f40d57ee257b5a'
-  head 'http://gnuradio.org/git/gnuradio.git'
+  head 'http://gnuradio.org/git/gnuradio.git', :tag => 'v3.7.3'
 
   depends_on 'cmake' => :build
   depends_on 'Cheetah' => :python
@@ -22,8 +22,8 @@ class Gnuradio < Formula
   depends_on 'sdl'
   depends_on 'libusb'
   depends_on 'orc'
-  depends_on 'pyqt' if ARGV.include?('--with-qt')
-  depends_on 'pyqwt' if ARGV.include?('--with-qt')
+  depends_on 'pyqt' unless ARGV.include?('--without-qt')
+  depends_on 'pyqwt' unless ARGV.include?('--without-qt')
   depends_on 'doxygen' if ARGV.include?('--with-docs')
 
   fails_with :clang do
@@ -47,7 +47,7 @@ class Gnuradio < Formula
   def install
     mkdir 'build' do
       args = ["-DCMAKE_PREFIX_PATH=#{prefix}", "-DQWT_INCLUDE_DIRS=#{HOMEBREW_PREFIX}/lib/qwt.framework/Headers"] + std_cmake_args
-      args << '-DENABLE_GR_QTGUI=OFF' unless ARGV.include?('--with-qt')
+      args << '-DENABLE_GR_QTGUI=OFF' if ARGV.include?('--without-qt')
       args << '-DENABLE_DOXYGEN=OFF' unless ARGV.include?('--with-docs')
 
       # From opencv.rb
