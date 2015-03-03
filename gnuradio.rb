@@ -2,10 +2,8 @@ require 'formula'
 
 class Gnuradio < Formula
   homepage 'http://gnuradio.org'
-  url  'http://gnuradio.org/releases/'
-  sha1 '48be46b4d62c08fe9eedf1ff1f6016514d427622'
-  head 'http://gnuradio.org/git/gnuradio.git', :tag => 'v3.7.3'
-  version '3.7.3'
+  url 'http://gnuradio.org/git/gnuradio.git', :tag => 'v3.7.3'
+  revision '1'
 
   depends_on 'cmake' => :build
   depends_on 'Cheetah' => :python
@@ -27,12 +25,12 @@ class Gnuradio < Formula
   depends_on 'pyqwt' unless ARGV.include?('--without-qt')
   depends_on 'doxygen' if ARGV.include?('--with-docs')
 
-  fails_with :clang do
-    build 421
-    cause "Fails to compile .S files."
-  end
+#  fails_with :clang do
+#    build 421
+#    cause "Fails to compile .S files."
+#  end
 
-  fails_with :llvm
+#  fails_with :llvm
 
   def options
     [
@@ -41,11 +39,16 @@ class Gnuradio < Formula
     ]
   end
 
-  def patches
-    DATA
-  end
+#  def patches
+#    DATA
+#  end
 
   def install
+  ENV['CC'] = '/usr/bin/llvm-gcc'
+  ENV['HOMEBREW_CC'] = 'llvm-gcc'
+  ENV['LD'] = '/usr/bin/llvm-gcc'
+  ENV['CXX'] = '/usr/bin/llvm-g++'
+  ENV['HOMEBREW_CXX'] = 'llvm-g++'
     mkdir 'build' do
       args = ["-DCMAKE_PREFIX_PATH=#{prefix}", "-DQWT_INCLUDE_DIRS=#{HOMEBREW_PREFIX}/lib/qwt.framework/Headers"] + std_cmake_args
       args << '-DENABLE_GR_QTGUI=OFF' if ARGV.include?('--without-qt')

@@ -1,8 +1,8 @@
 require 'formula'
 
-class GrBaz < Formula
-  homepage 'http://wiki.spench.net/wiki/Gr-baz'
-  url 'https://github.com/balint256/gr-baz.git', :commit => '7a4e416f743a6b929346f417f28ca87e326e8494'
+class GrFosphor < Formula
+  homepage 'http://sdr.osmocom.org/trac/wiki/fosphor'
+  url 'git://git.osmocom.org/gr-fosphor.git', :commit => '985c78ffa7ecfc0d4b5b43d2541e68a9e6d94576'
   revision '1'
 
   depends_on 'cmake' => :build

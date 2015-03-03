@@ -2,9 +2,9 @@ require 'formula'
 
 class GrOsmosdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/GrOsmoSDR'
-  head 'git://git.osmocom.org/gr-osmosdr', :tag => 'v0.1.4',
+  url 'git://git.osmocom.org/gr-osmosdr', :tag => 'v0.1.4',
     :shallow => false
-  version '0.1.4'
+  revision '1'
 
   depends_on 'cmake' => :build
   depends_on 'gnuradio'
