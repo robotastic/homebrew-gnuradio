@@ -118,6 +118,8 @@ index f52ffa3..cbdc9c6 100644
      }
  
      if (d_nb1_on)
+
+
 diff --git a/applications/gqrx/receiver.cpp b/applications/gqrx/receiver.cpp
 index c856fb7..1d7700b 100644
 --- a/applications/gqrx/receiver.cpp
@@ -131,3 +133,100 @@ index c856fb7..1d7700b 100644
      {
  #ifndef QT_NO_DEBUG_OUTPUT
          std::cout << "No change in output device:" << std::endl
+
+
+diff --git a/applications/gqrx/main.cpp b/applications/gqrx/main.cpp
+index 793f7a4..bf99a55 100644
+--- a/applications/gqrx/main.cpp
++++ b/applications/gqrx/main.cpp
+@@ -24,7 +24,10 @@
+ #include "gqrx.h"
+ 
+ #include <iostream>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/program_options.hpp>
++#endif
+ namespace po = boost::program_options;
+
+
+diff --git a/dsp/rx_agc_xx.h b/dsp/rx_agc_xx.h
+index 55dcb4d..81762ee 100644
+--- a/dsp/rx_agc_xx.h
++++ b/dsp/rx_agc_xx.h
+@@ -22,7 +22,10 @@
+ 
+ #include <gr_sync_block.h>
+ #include <gr_complex.h>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/thread/mutex.hpp>
++#endif
+ #include <dsp/agc_impl.h>
+ 
+ class rx_agc_cc;
+
+
+diff --git a/dsp/rx_fft.h b/dsp/rx_fft.h
+index bf332d2..3fdd22c 100644
+--- a/dsp/rx_fft.h
++++ b/dsp/rx_fft.h
+@@ -24,8 +24,11 @@
+ #include <gri_fft.h>
+ #include <gr_firdes.h>       /* contains enum win_type */
+ #include <gr_complex.h>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/thread/mutex.hpp>
+ #include <boost/circular_buffer.hpp>
++#endif
+ 
+ 
+ #define MAX_FFT_SIZE 32768
+
+
+diff --git a/dsp/rx_noise_blanker_cc.h b/dsp/rx_noise_blanker_cc.h
+index 11ca0d1..f5e9a50 100644
+--- a/dsp/rx_noise_blanker_cc.h
++++ b/dsp/rx_noise_blanker_cc.h
+@@ -22,7 +22,10 @@
+ 
+ #include <gr_sync_block.h>
+ #include <gr_complex.h>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/thread/mutex.hpp>
++#endif
+ 
+ class rx_nb_cc;
+
+
+diff --git a/dsp/sniffer_f.h b/dsp/sniffer_f.h
+index 1a3167e..6e583c2 100644
+--- a/dsp/sniffer_f.h
++++ b/dsp/sniffer_f.h
+@@ -21,8 +21,11 @@
+ #define SNIFFER_F_H
+ 
+ #include <gr_sync_block.h>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/thread/mutex.hpp>
+ #include <boost/circular_buffer.hpp>
++#endif
+ 
+ 
+ class sniffer_f;
+
+
+diff --git a/qtgui/ioconfig.cpp b/qtgui/ioconfig.cpp
+index f6e8bd5..5727ed9 100644
+--- a/qtgui/ioconfig.cpp
++++ b/qtgui/ioconfig.cpp
+@@ -29,7 +29,10 @@
+ #include <osmosdr/osmosdr_device.h>
+ #include <osmosdr/osmosdr_source_c.h>
+ #include <osmosdr/osmosdr_ranges.h>
++#ifndef Q_MOC_RUN  // See: https://bugreports.qt-project.org/browse/QTBUG-22829
+ #include <boost/foreach.hpp>
++#endif
+ 
+ #ifdef WITH_PULSEAUDIO
+ #include "pulseaudio/pa_device_list.h"
+
+
