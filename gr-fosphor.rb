@@ -1,18 +1,14 @@
-require 'formula'
+class GrFosphor < Formula
+  homepage "http://sdr.osmocom.org/trac/wiki/fosphor"
+  url      "git://git.osmocom.org/gr-fosphor.git", :revision => "3fdfe7cf812238804f25f5cdfe39f848fd657b33"
+  revision 2
 
-class GrOsmosdr < Formula
-  homepage 'http://sdr.osmocom.org/trac/wiki/GrOsmoSDR'
-  url 'git://git.osmocom.org/gr-osmosdr',
-    :shallow => true,
-    :revision => '86ad584204762eeb01f07daa683673f1ec3f1df5'
-  revision 3
-
-  depends_on 'cmake' => :build
-  depends_on 'gnuradio'
-  depends_on 'rtlsdr'
+  depends_on "cmake" => :build
+  depends_on "gnuradio"
+  depends_on "glfw3"
 
   def install
-    mkdir 'build' do
+    mkdir "build" do
       python_prefix = `python-config --prefix`.strip
       system 'cmake', '..',
         *std_cmake_args,
@@ -22,11 +18,5 @@ class GrOsmosdr < Formula
       system "make"
       system "make", "install"
     end
-  end
-
-  def python_path
-    python = Formula['python']
-    kegs = python.rack.children.reject { |p| p.basename.to_s == '.DS_Store' }
-    kegs.find { |p| Keg.new(p).linked? } || kegs.last
   end
 end

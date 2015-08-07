@@ -2,44 +2,11 @@
 published: false
 ---
 
-# HackRF OSX Install
+# Software Defined Radio tools OSX Install
 
-This will walk you through getting HackRF to work on OSX. It is really just an adaptation of the awesome collection of [Homebrew](https://github.com/mxcl/homebrew) recipes from [Titanous](https://github.com/titanous/homebrew-gnuradio) for getting GNU Radio running on OSX.
+This will walk you through getting gnuradio and device-specific libraries to work on OSX. It is really just an adaptation of the awesome collection of [Homebrew](https://github.com/mxcl/homebrew) recipes from [Titanous](https://github.com/titanous/homebrew-gnuradio) for getting GNU Radio running on OSX.
 
 ## Installation
-
-These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is probably a good idea to make sure all OSX updates have been applied and Xcode is up to date. Also, probably good to install the Xcode command line apps as explained over at[Stackoverflow](http://stackoverflow.com/a/932932).
-
-- Install [Homebrew](http://brew.sh/) if you haven't already
-
-  ```sh
-  ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-  ```
-  or if you already have it installed, update and upgrade everything:
-  
-  ```sh
-  brew update
-  brew upgrade
-  ```
-  
-- After that is done run the following to make sure you have no issues with your setup, cleanup anything it catches
-
-  ```sh
-  brew doctor
-  ```
-
-- Add this line to your profile (ie `~/.profile` or `~/.bash_profile` or `~/.zshenv`) and reload
-  your profile (`source ~/.profile` or `exec $SHELL`)
-
-  ```sh
-  export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-  ```
-
-- Install the python package prerequisites
-
-  ```sh
-  brew install python gcc swig
-  ```
 
 - Install the prerequisite python packages
 
@@ -59,7 +26,7 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
 - Install gnuradio 
 
   ```sh
-  brew tap robotastic/homebrew-hackrf
+  brew tap cole-christensen/rfbrew
   brew install gnuradio --with-qt
   ```
 - Install HackRF Libraries
@@ -75,10 +42,10 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
   local_blocks_path=/usr/local/share/gnuradio/grc/blocks
   ```
 
-- Install HackRF & RTL-SDR related blocks
+- Install BladeRF, HackRF, and RTL-SDR related blocks
 
   ```sh
-  brew install rtlsdr gr-osmosdr gr-baz --HEAD
+  brew install bladerf rtlsdr gr-osmosdr gr-baz
   ```
 - If you want a graphic interface to play with your HackRF, GQRX is great
   To install it:
