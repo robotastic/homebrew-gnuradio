@@ -1,5 +1,3 @@
-require 'formula'
-
 class Rtlsdr < Formula
   homepage 'http://sdr.osmocom.org/trac/wiki/rtl-sdr'
   head 'git://git.osmocom.org/rtl-sdr.git',
@@ -12,7 +10,7 @@ class Rtlsdr < Formula
   depends_on 'libusb'
 
   if MacOS.xcode_version.to_f >= 4.3
-    depends_on 'autoconf'
+    depends_on 'autoconf' => :build
   end
 
   def install
