@@ -35,7 +35,7 @@ These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is pro
   export PATH=/usr/local/sbin:/usr/local/bin:$PATH
   ```
 
-- Install the python package prerequisites
+- Install the python package prerequisites (Note: installing gcc can take hours)
 
   ```sh
   brew install python gcc swig
