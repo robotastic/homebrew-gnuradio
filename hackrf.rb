@@ -8,6 +8,7 @@ class Hackrf < Formula
   head 'https://github.com/mossmann/hackrf.git'
 
   depends_on 'cmake' => :build
+  depends_on 'pkg-config' => :build
   depends_on 'libusb'
 
   def install
